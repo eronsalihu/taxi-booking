@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.taxibooking.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_discoverFragment"
+            app:destination="@id/explore" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/explore"
+        android:name="com.example.taxibooking.fragments.ExploreFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_explore" />
+
+
+</navigation>

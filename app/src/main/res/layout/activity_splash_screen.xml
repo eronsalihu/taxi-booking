@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.taxibooking.activities.SplashScreenActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foreground="@color/colorPrimary" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/app_title"
+        />
+    <TextView
+        android:id="@+id/app_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/didactfothic_regular"
+        android:gravity="center"
+        android:text="@string/taxi_booking"
+        android:padding="8dp"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/text_intro" />
+
+    <TextView
+        android:id="@+id/text_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/didactfothic_regular"
+        android:gravity="center_horizontal"
+        android:lines="2"
+        android:maxLines="2"
+        android:paddingLeft="30dp"
+        android:paddingTop="14dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="18dp"
+        android:text="@string/find_your_transport_on_only_one_platform_anytime_and_anywhere"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/get_started_btn" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/get_started_btn"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="28dp"
+        android:elevation="20dp"
+        android:text="@string/get_started"
+        android:textColor="@android:color/white"
+        android:translationZ="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

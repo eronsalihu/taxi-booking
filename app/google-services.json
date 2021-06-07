@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "619991161557",
+    "project_id": "taxi-booking-90293",
+    "storage_bucket": "taxi-booking-90293.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619991161557:android:36027d6b2fde5eccf7e05c",
+        "android_client_info": {
+          "package_name": "com.example.taxibooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619991161557-0u32g3kjc5fad2oltrvn6djfi8l80jd9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzARntFGa5TjgL36Zdd7fvFmAeYcQdfSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619991161557-0u32g3kjc5fad2oltrvn6djfi8l80jd9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

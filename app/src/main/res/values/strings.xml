@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Taxi Booking</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="get_started">Get Started</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="please_sign_in_to_your_account">Please sign in to your account</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_with_google">Sign In with Google</string>
+    <string name="don_t_have_an_account">Don\'t have an Account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="please_fill_in_the_form_to_continue">Please fill in the form to continue</string>
+    <string name="full_name">Full Name</string>
+    <string name="i_agree_to_the_terms_amp_conditions_and_privacy_policy"><![CDATA[I agree to the Terms & Conditions and Privacy Policy.]]></string>
+    <string name="have_an_account">Have an Account?</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="find_your_transport_on_only_one_platform_anytime_and_anywhere">Find your transport on only one platform. Anytime and anywhere.</string>
+    <string name="taxi_booking">Taxi Booking</string>
+    <string name="change_password">Change Password</string>
+    <string name="enter_your_email_address_and_we_ll_send_you_a_link_to_reset_your_password">Enter your email address and we\'ll send you a link to reset your password.</string>
+    <string name="todo">TODO</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

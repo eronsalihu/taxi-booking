@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.example.taxibooking.activities.RegisterActivity">
+
+
+    <TextView
+        android:id="@+id/create_acc_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="38dp"
+        android:fontFamily="@font/didactfothic_regular"
+        android:gravity="center"
+        android:text="@string/create_new_account"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/log_in_dsc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/didactfothic_regular"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/please_fill_in_the_form_to_continue"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create_acc_txt" />
+
+    <EditText
+        android:id="@+id/fullname_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="28dp"
+        android:background="@drawable/background_edit_text"
+        android:fontFamily="@font/didactfothic_regular"
+        android:hint="@string/full_name"
+        android:inputType="text|textCapWords"
+        android:padding="22dp"
+        android:textColorHint="@color/colorSecondaryText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/log_in_dsc" />
+
+    <EditText
+        android:id="@+id/register_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="28dp"
+        android:background="@drawable/background_edit_text"
+        android:fontFamily="@font/didactfothic_regular"
+        android:hint="@string/email_address"
+        android:inputType="textEmailAddress"
+        android:padding="22dp"
+        android:textColorHint="@color/colorSecondaryText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fullname_register" />
+
+    <EditText
+        android:id="@+id/register_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="28dp"
+        android:background="@drawable/background_edit_text"
+        android:fontFamily="@font/didactfothic_regular"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="22dp"
+        android:textColorHint="@color/colorSecondaryText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_email" />
+
+    <EditText
+        android:id="@+id/register_confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="28dp"
+        android:background="@drawable/background_edit_text"
+        android:fontFamily="@font/didactfothic_regular"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        android:padding="22dp"
+        android:textColorHint="@color/colorSecondaryText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_password" />
+
+    <CheckBox
+        android:id="@+id/terms_and_conditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:minLines="2"
+        android:text="@string/i_agree_to_the_terms_amp_conditions_and_privacy_policy"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_confirm_password" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sign_up_btn"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="20dp"
+        android:text="@string/sign_up"
+        android:textColor="@android:color/white"
+        android:translationZ="20dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_sign_in"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/tv_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/didactfothic_regular"
+            android:text="@string/have_an_account"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/didactfothic_regular"
+            android:paddingLeft="3dp"
+            android:text="@string/sign_in"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
