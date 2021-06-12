@@ -17,8 +17,10 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -126,6 +128,18 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         drawerLayout = v.findViewById(R.id.drawer_layout);
         navigationView = v.findViewById(R.id.navigationView);
+        navigationView.bringToFront();
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.logOut){
+                    sentUserToLoginUi();
+                }
+                return true;
+            }
+        });
 
         menuBtn = v.findViewById(R.id.menuBtn);
         menuBtn.setOnClickListener(task -> {

@@ -13,3 +13,25 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+#built application files
+*.apk
+*.ap_
+*.aab
+                           
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+                            
+# generated files
+bin/
+gen/
+
+# Windows thumbnail db
+Thumbs.db
+          
+#NDK
+obj/
+.externalNativeBuild

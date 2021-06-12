@@ -8,11 +8,23 @@
         android:orderInCategory="1"
         android:icon="@drawable/ic_home"/>
 
-    <item android:id="@+id/discover"
-        android:title="Discover"
+    <item android:id="@+id/explore"
+        android:title="Explore"
         app:showAsAction="always"
         android:orderInCategory="2"
         android:icon="@drawable/ic_search"/>
+
+    <item android:id="@+id/saved"
+        android:title="Saved"
+        app:showAsAction="always"
+        android:orderInCategory="3"
+        android:icon="@drawable/ic_my_location"/>
+
+    <item android:id="@+id/profile"
+        android:title="Profile"
+        app:showAsAction="always"
+        android:orderInCategory="4"
+        android:icon="@drawable/ic_logo"/>
 
 
 </menu>
