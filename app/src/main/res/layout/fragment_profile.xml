@@ -2,8 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="com.example.taxibooking.fragments.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,22 +24,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:src="@drawable/ic_launcher_foreground"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp" />
-
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:civ_border_color="@color/orange"
+                app:civ_border_width="1dp"
+                tools:src="@drawable/ic_launcher_foreground" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
             <TextView
+                android:id="@+id/user_profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Eron"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+                android:layout_marginLeft="12dp"
+                android:fontFamily="@font/didactfothic_regular"
+                android:textColor="@color/orange"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                tools:text="Eron" />
+
+            <TextView
+                android:id="@+id/user_profile_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                tools:text="salihu.eron@outlook.com" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -61,9 +80,9 @@
                     android:id="@+id/tv_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Eron Salihu"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="Eron Salihu" />
             </LinearLayout>
 
             <TextView
@@ -72,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="8dp"
-                android:background="?android:colorBackground"
+                android:background="@color/colorPrimary"
                 android:text="  Full Name  "
                 android:textColor="@color/orange"
                 android:textSize="14sp"
@@ -95,9 +114,9 @@
                     android:id="@+id/tv_user_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="salihu.eron@outlook.com"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="salihu.eron@outlook.com" />
             </LinearLayout>
 
             <TextView
@@ -108,7 +127,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="8dp"
-                android:background="?android:colorBackground"
+                android:background="@color/colorPrimary"
                 android:text="  Email  "
                 android:textColor="@color/orange"
                 android:textSize="14sp"
@@ -134,9 +153,9 @@
                     android:id="@+id/tv_user_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+38348403691"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="+38348403691" />
             </LinearLayout>
 
             <TextView
@@ -147,7 +166,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="8dp"
-                android:background="?android:colorBackground"
+                android:background="@color/colorPrimary"
                 android:text="  Phone  "
                 android:textColor="@color/orange"
                 android:textSize="14sp"
@@ -173,9 +192,9 @@
                     android:id="@+id/tv_user_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Male"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="Male" />
             </LinearLayout>
 
             <TextView
@@ -186,7 +205,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="8dp"
-                android:background="?android:colorBackground"
+                android:background="@color/colorPrimary"
                 android:text="  Gender  "
                 android:textColor="@color/orange"
                 android:textSize="14sp"
@@ -212,9 +231,9 @@
                     android:id="@+id/tv_user_dateOfBirth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" 17 March 2000"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text=" 17 March 2000" />
             </LinearLayout>
 
             <TextView
@@ -225,7 +244,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="8dp"
-                android:background="?android:colorBackground"
+                android:background="@color/colorPrimary"
                 android:text="  Date of Birth  "
                 android:textColor="@color/orange"
                 android:textSize="14sp"
@@ -235,7 +254,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/sign_in_btn"
+                android:id="@+id/edit_btn"
                 style="@style/button_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
