@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.taxiBooking.R;
 import com.example.taxibooking.models.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -21,16 +22,15 @@ import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText registerEmail;
-    EditText registerPassword;
-    EditText fullName;
-    EditText confirmPassword;
-    CheckBox termsAndCondition;
-    Button signUpBtn;
-    LinearLayout alreadyHaveAnAccount;
-    FirebaseDatabase database;
-    DatabaseReference databaseReference;
-    FirebaseAuth mAuth;
+     EditText registerEmail;
+     EditText registerPassword;
+     EditText fullName;
+     EditText confirmPassword;
+     CheckBox termsAndCondition;
+     Button signUpBtn;
+     LinearLayout alreadyHaveAnAccount;
+     FirebaseAuth mAuth;
+     DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,20 +61,17 @@ public class RegisterActivity extends AppCompatActivity {
         String password = registerPassword.getText().toString();
         String conPassword = confirmPassword.getText().toString();
 
-        database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("User");
         mAuth = FirebaseAuth.getInstance();
-
-
-        User user = new User(name,email,password,null,null,null);
-        String keyID = databaseReference.push().getKey();
-        databaseReference.child(keyID).setValue(user);
-
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        User user = new User(name,email,"tag","tag","tag");
         if (validate(name, email, password, conPassword)) {
 
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
+                            String currentUserID = mAuth.getCurrentUser().getUid();
+                            databaseReference.child("User").child(currentUserID).setValue(user);
                             Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+
                             Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).sendEmailVerification().addOnCompleteListener(task1 -> {
                                 if (task1.isSuccessful()) {
                                     Toast.makeText(this, "Verify your email to continue!", Toast.LENGTH_SHORT).show();
@@ -99,7 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
-
     private boolean validate(String name, String email, String password, String conPassword) {
         if (name.isEmpty()) {
             fullName.setError("Enter your Name");
