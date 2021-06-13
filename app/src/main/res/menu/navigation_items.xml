@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
-    <item android:id="@+id/home"
-        android:title="Home"
-        app:showAsAction="always"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
         android:orderInCategory="1"
-        android:icon="@drawable/ic_home"/>
+        android:title="Home"
+        app:showAsAction="always" />
 
-    <item android:id="@+id/explore"
-        android:title="Explore"
-        app:showAsAction="always"
+    <item
+        android:id="@+id/explore"
+        android:icon="@drawable/ic_search"
         android:orderInCategory="2"
-        android:icon="@drawable/ic_search"/>
+        android:title="Explore"
+        app:showAsAction="always" />
 
-    <item android:id="@+id/saved"
-        android:title="Saved"
-        app:showAsAction="always"
+    <item
+        android:id="@+id/saved"
+        android:icon="@drawable/ic_heart"
         android:orderInCategory="3"
-        android:icon="@drawable/ic_my_location"/>
+        android:title="Saved"
+        app:showAsAction="always" />
 
-    <item android:id="@+id/profile"
-        android:title="Profile"
-        app:showAsAction="always"
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_user"
         android:orderInCategory="4"
-        android:icon="@drawable/ic_logo"/>
+        android:title="Profile"
+        app:showAsAction="always" />
 
 
 </menu>
