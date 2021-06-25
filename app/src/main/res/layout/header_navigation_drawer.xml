@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/wave"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="50dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/email_address"
-        android:textAppearance="?attr/textAppearanceHeadline6" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image_header"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:civ_border_color="@color/orange"
+        app:civ_border_width="1dp"
+        tools:src="@drawable/ic_launcher_foreground" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/full_name"
-        android:textAppearance="?attr/textAppearanceBody2"
-        android:textColor="@color/material_on_surface_emphasis_medium" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/user_profile_name_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:fontFamily="@font/didactfothic_regular"
+            android:textColor="@color/orange"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            tools:text="Eron" />
+
+        <TextView
+            android:id="@+id/user_profile_email_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            tools:text="salihu.eron@outlook.com" />
+    </LinearLayout>
 
 </LinearLayout>

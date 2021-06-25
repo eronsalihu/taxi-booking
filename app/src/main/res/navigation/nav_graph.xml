@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.example.taxibooking.fragments.HomeFragment"
+        android:name="com.eee.taxibooking.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/explore"
-        android:name="com.example.taxibooking.fragments.ExploreFragment"
+        android:name="com.eee.taxibooking.fragments.ExploreFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_explore">
         <action
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/saved"
-        android:name="com.example.taxibooking.fragments.FavoritesFragment"
+        android:name="com.eee.taxibooking.fragments.FavoritesFragment"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites">
         <action
@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.taxibooking.fragments.ProfileFragment"
+        android:name="com.eee.taxibooking.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 

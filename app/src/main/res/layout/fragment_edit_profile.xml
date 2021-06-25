@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
     android:background="@drawable/ic_edit_fragment_background"
-    tools:context="com.example.taxibooking.fragments.EditProfileFragment">
+    tools:context="com.eee.taxibooking.fragments.EditProfileFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

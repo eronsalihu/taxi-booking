@@ -5,7 +5,7 @@
     android:id="@+id/splash_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.taxibooking.activities.SplashScreenActivity">
+    tools:context="com.eee.taxibooking.activities.SplashScreenActivity">
 
     <ImageView
         android:layout_width="match_parent"

@@ -1,7 +1,8 @@
-package com.example.taxibooking.activities;
+package com.eee.taxibooking.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,8 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.taxiBooking.R;
-import com.example.taxibooking.models.User;
+import com.eee.taxibooking.R;
+import com.eee.taxibooking.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -21,16 +22,17 @@ import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText registerEmail;
-    EditText registerPassword;
-    EditText fullName;
-    EditText confirmPassword;
-    CheckBox termsAndCondition;
-    Button signUpBtn;
-    LinearLayout alreadyHaveAnAccount;
-    FirebaseDatabase database;
-    DatabaseReference databaseReference;
-    FirebaseAuth mAuth;
+    private EditText registerEmail;
+    private EditText registerPassword;
+    private EditText fullName;
+    private EditText confirmPassword;
+    private CheckBox termsAndCondition;
+    private Button signUpBtn;
+    private LinearLayout alreadyHaveAnAccount;
+    private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
+    public static final String MY_PREFS_NAME = "PREFS";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,22 +63,23 @@ public class RegisterActivity extends AppCompatActivity {
         String password = registerPassword.getText().toString();
         String conPassword = confirmPassword.getText().toString();
 
-        database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("User");
         mAuth = FirebaseAuth.getInstance();
-
-
-        User user = new User(name,email,password,null,null,null);
-        String keyID = databaseReference.push().getKey();
-        databaseReference.child(keyID).setValue(user);
-
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        User user = new User(name,email,"tag","tag","tag");
         if (validate(name, email, password, conPassword)) {
 
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
+                            String currentUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+                            databaseReference.child("User").child(currentUserID).setValue(user);
                             Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+
                             Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).sendEmailVerification().addOnCompleteListener(task1 -> {
                                 if (task1.isSuccessful()) {
+                                    SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                                    editor.putString("email", email);
+                                    editor.apply();
+
                                     Toast.makeText(this, "Verify your email to continue!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -147,5 +150,4 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return true;
     }
-
 }

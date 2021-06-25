@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.example.taxibooking.activities.LogInActivity">
+    tools:context="com.eee.taxibooking.activities.LogInActivity">
 
 
     <TextView
@@ -96,6 +96,7 @@
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
         android:elevation="20dp"
+        android:padding="16dp"
         android:text="@string/sign_in"
         android:textColor="@android:color/white"
         android:translationZ="20dp"
@@ -113,6 +114,7 @@
         android:layout_marginBottom="10dp"
         android:drawableLeft="@drawable/ic_google"
         android:elevation="20dp"
+        android:padding="16dp"
         android:text="@string/sign_in_with_google"
         android:translationZ="20dp"
         app:layout_constraintBottom_toTopOf="@id/tv_sign_up"

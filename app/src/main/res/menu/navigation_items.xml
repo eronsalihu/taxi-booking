@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_home"
         android:orderInCategory="1"
         android:title="Home"
-        app:showAsAction="always" />
+        app:showAsAction="always|withText" />
 
     <item
         android:id="@+id/explore"
