@@ -99,7 +99,7 @@ public class ProfileFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-        builder.setView(layoutInflater.inflate(R.layout.progress_dialog,null));
+        builder.setView(layoutInflater.inflate(R.layout.progress_dialog, null));
         builder.setCancelable(true);
         alertDialog = builder.create();
         alertDialog.show();
@@ -107,7 +107,7 @@ public class ProfileFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
                     User user = snapshot.getValue(User.class);
                     assert user != null;
                     username.setText(user.getFullName());
@@ -194,9 +194,7 @@ public class ProfileFragment extends Fragment {
                         .getBitmap(getActivity().getContentResolver(), imageUri);
                 profileImage.setImageBitmap(bitmap);
                 uploadImage();
-            }
-
-            catch (IOException e) {
+            } catch (IOException e) {
                 // Log the exception
                 e.printStackTrace();
             }
@@ -250,6 +248,6 @@ public class ProfileFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference()
                 .child("profileImages").child(uid + ".jpeg");
 
-        storageReference.putFile(imageUri).addOnSuccessListener(taskSnapshot -> Log.d("IMAGE","Upload Successfully"));
+        storageReference.putFile(imageUri).addOnSuccessListener(taskSnapshot -> Log.d("IMAGE", "Upload Successfully"));
     }
 }

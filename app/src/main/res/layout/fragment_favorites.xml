@@ -39,13 +39,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="72dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="66dp"
             android:src="@drawable/ic_add"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="@color/colorSecondaryText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/orange"/>
+            app:tint="@color/white"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

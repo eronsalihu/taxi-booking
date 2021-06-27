@@ -28,10 +28,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.eee.taxibooking.R;
 import com.eee.taxibooking.activities.LogInActivity;
+import com.eee.taxibooking.models.TaxiCluster;
 import com.eee.taxibooking.models.User;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.maps.CameraUpdate;
@@ -54,6 +57,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.maps.android.clustering.ClusterManager;
 
 import java.io.IOException;
 import java.util.List;
@@ -79,6 +83,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private TextView name;
     private TextView email;
     private StorageReference storageReference;
+    private ClusterManager<TaxiCluster> clusterManager;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -180,8 +185,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 int id = item.getItemId();
                 if (id == R.id.logOut) {
                     FirebaseAuth.getInstance().signOut();
-                    AuthUI.getInstance().signOut(getContext()) ;
+                    AuthUI.getInstance().signOut(getContext());
                     sentUserToLoginUi();
+                }
+                ProfileFragment profileFragment = new ProfileFragment();
+                if (id == R.id.viewProfile) {
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction transaction = fm.beginTransaction();
+                    transaction.replace(R.id.fragment_home, profileFragment).commit();
                 }
                 return true;
             }
@@ -253,6 +264,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireActivity(), R.raw.style_json));
 
+        clusterManager = new ClusterManager<>(getContext(), mMap);
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -266,6 +278,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         }
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(false);
+
+        setUpClusterer();
+        clusterManager.cluster();
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
@@ -286,17 +301,18 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 
                 // Placing a marker on the touched position
-                googleMap.addMarker(markerOptions);
-            }
-        });
-
-        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-            @Override
-            public void onMapLongClick(LatLng latLng) {
-                googleMap.clear();
+//                googleMap.addMarker(markerOptions);
 
             }
         });
+
+//        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+//            @Override
+//            public void onMapLongClick(LatLng latLng) {
+//                googleMap.clear();
+//
+//            }
+//        });
 
         int intent = getActivity().getIntent().getIntExtra("Place Number", 0);
         if (intent == 0) {
@@ -391,5 +407,126 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
+    private void setUpClusterer() {
+        // Position the map.
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 10));
+
+        // Initialize the manager with the context and the map.
+        // (Activity extends context, so we can pass 'this' in the constructor.)
+        clusterManager = new ClusterManager<TaxiCluster>(getContext(), mMap);
+        // Point the map's listeners at the listeners implemented by the cluster
+        // manager.
+        mMap.setOnMarkerClickListener(clusterManager);
+
+        // Add cluster items (markers) to the cluster manager.
+        addItems();
+    }
+
+    private void addItems() {
+
+        // Set some lat/lng coordinates to start with.
+        double lat = 42.6026;
+        double lng = 20.9030;
+        // Add ten cluster items in close proximity, for purposes of this example.
+//        for (int i = 0; i < 10; i++) {
+//            double offset = i / 60d;
+//            lat = lat + offset;
+//            lng = lng + offset;
+//            TaxiCluster cluster_one = new TaxiCluster(42.3702+offset, 21.1483+offset, "Title " + i, "Snippet " + i);
+//            TaxiCluster cluster_two = new TaxiCluster(42.6629+offset , 21.1655+offset, "Title " + i, "Snippet " + i);
+//            TaxiCluster cluster_three = new TaxiCluster(42.2171+offset, 20.7436+offset, "Title " + i, "Snippet " + i);
+//            TaxiCluster cluster_four = new TaxiCluster(42.3844+offset, 20.4285+offset, "Title " + i, "Snippet " + i);
+//            TaxiCluster cluster_five = new TaxiCluster(42.8914+offset, 20.8660+offset, "Title " + i, "Snippet " + i);
+//            TaxiCluster cluster_six = new TaxiCluster(42.6593+offset, 20.2887+offset, "Title " + i, "Snippet " + i);
+//            TaxiCluster cluster_seven = new TaxiCluster(42.4635+offset, 21.4694+offset, "Title " + i, "Snippet " + i);
+//
+//            clusterManager.addItem(cluster_one) ;
+//            clusterManager.addItem(cluster_two) ;
+//            clusterManager.addItem(cluster_three);
+//            clusterManager.addItem(cluster_four) ;
+//            clusterManager.addItem(cluster_five) ;
+//            clusterManager.addItem(cluster_six) ;
+//            clusterManager.addItem(cluster_seven);
+//
+//            }
+        for (double i = 42.2171; i < 42.8914; i += 0.3) {
+            for (double j = 20.4285; j < 21.1655; j += 0.3) {
+                TaxiCluster cluster = new TaxiCluster(i, j, "Title " + i, "Snippet " + i);
+                clusterManager.addItem(cluster);
+
+            }
+        }
+
+        for (double i = 42.5389; i < 42.6549; i += 0.1) {
+            for (double j = 21.3914; j < 21.6193; j += 0.1) {
+                TaxiCluster cluster = new TaxiCluster(i, j, "Title " + i, "Snippet " + i);
+                clusterManager.addItem(cluster);
+
+            }
+        }
+        for (double i = 42.4892; i < 42.6121; i += 0.2) {
+            for (double j = 21.1148; j < 21.2052; j += 0.2) {
+                TaxiCluster cluster = new TaxiCluster(i, j, "Title " + i, "Snippet " + i);
+                clusterManager.addItem(cluster);
+
+            }
+        }
+
+        for (double i = 42.3141; i < 42.4242; i += 0.02) {
+            for (double j = 21.0485; j < 21.2338; j += 0.03) {
+                TaxiCluster cluster = new TaxiCluster(i, j, "Title " + i, "Snippet " + i);
+                clusterManager.addItem(cluster);
+
+            }
+        }
+
+        for (double i = 42.6377; i < 42.6737; i += 0.03) {
+            for (double j = 21.0165; j < 21.2423; j += 0.03) {
+                TaxiCluster cluster = new TaxiCluster(i, j, "Title " + i, "Snippet " + i);
+                clusterManager.addItem(cluster);
+
+            }
+        }
+
+        for (double i = 42.3943; i < 42.7567; i += 0.3) {
+            for (double j = 20.8504; j < 21.2274; j += 0.3) {
+                TaxiCluster cluster = new TaxiCluster(i, j, "Title " + i, "Snippet " + i);
+                clusterManager.addItem(cluster);
+
+            }
+        }
+
+        for (double i = 42.5987; i < 43.1480; i += 0.3) {
+            for (double j = 20.1297; j < 20.8376; j += 0.3) {
+                TaxiCluster cluster = new TaxiCluster(i, j, "Title " + i, "Snippet " + i);
+                clusterManager.addItem(cluster);
+
+            }
+        }
+
+        for (double i = 42.3560; i < 42.8498; i += 0.3) {
+            for (double j = 20.5309; j < 21.2291; j += 0.3) {
+                TaxiCluster cluster = new TaxiCluster(i, j, "Title " + i, "Snippet " + i);
+                clusterManager.addItem(cluster);
+
+            }
+        }
+
+        for (double i = 42.4090; i < 42.6586; i += 0.3) {
+            for (double j = 21.2771; j < 21.6299; j += 0.3) {
+                TaxiCluster cluster = new TaxiCluster(i, j, "Title " + i, "Snippet " + i);
+                clusterManager.addItem(cluster);
+
+            }
+        }
+
+        for (double i = 42.4719; i < 42.5554; i += 0.3) {
+            for (double j = 20.9615; j < 21.4027; j += 0.3) {
+                TaxiCluster cluster = new TaxiCluster(i, j, "Title " + i, "Snippet " + i);
+                clusterManager.addItem(cluster);
+
+            }
+        }
+    }
 
 }

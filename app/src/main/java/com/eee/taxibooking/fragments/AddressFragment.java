@@ -3,14 +3,11 @@ package com.eee.taxibooking.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.eee.taxibooking.R;
 import com.eee.taxibooking.databases.Address;
@@ -51,7 +48,7 @@ public class AddressFragment extends Fragment {
 
         backBtn = view.findViewById(R.id.backBtn);
         backBtn.setOnClickListener(v -> {
-            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.anim_slide_in_left, R.anim.slide_out_right).remove(this).commit();
+            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_out_left, R.anim.slide_out_right).remove(this).commit();
 
         });
 
@@ -62,33 +59,48 @@ public class AddressFragment extends Fragment {
             String address = _address.getEditText().getText().toString();
             String city = _city.getEditText().getText().toString();
 
-            saveNewAddress(name,address,city);
+            if (validateInputs(name, address, city)) {
+                saveNewAddress(name, address, city);
 
-//            FragmentManager fm = getFragmentManager();
-//            FragmentTransaction transaction = fm.beginTransaction();
-//            transaction.setCustomAnimations(R.anim.anim_slide_in_left, R.anim.slide_out_right);
-//            transaction.replace(R.id.fragment_explore, favoritesFragment).addToBackStack(null).commit();
-            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.anim_slide_in_left, R.anim.slide_out_right).remove(this).commit();
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_out_left, R.anim.slide_out_right).remove(this).commit();
 
-            Snackbar.make(getView(), "Address Added.", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(getView(), "Address Added.", Snackbar.LENGTH_LONG).show();
 
-//            Toast.makeText(getActivity(),"Added",Toast.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(getView(), "Couldn't Add Address.", Snackbar.LENGTH_LONG).show();
 
+            }
 
         });
 
         return view;
     }
 
-    private void saveNewAddress(String name, String _address,String city) {
-        Database db  = Database.getDbInstance(getContext().getApplicationContext());
+    private void saveNewAddress(String name, String _address, String city) {
+        Database db = Database.getDbInstance(getContext().getApplicationContext());
 
         Address address = new Address();
         address.name = name;
-        address.address =_address;
+        address.address = _address;
         address.city = city;
         db.addressDao().insertAddress(address);
 
+    }
+
+    private boolean validateInputs(String name, String address, String city) {
+        if (name.isEmpty()) {
+            _name.setError("Name is required!");
+            return false;
+        }
+        if (address.isEmpty()) {
+            _address.setError("Address is required!");
+            return false;
+        }
+        if (city.isEmpty()) {
+            _city.setError("City is required!");
+            return false;
+        }
+        return true;
     }
 
 }

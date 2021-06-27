@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -29,7 +27,7 @@ public class FavoritesFragment extends Fragment {
     FloatingActionButton add;
     Database database;
     ArrayList<String> address_name, address_address, address_city;
-    private AddressAdapter addressAdapter;
+    public AddressAdapter addressAdapter;
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -53,7 +51,7 @@ public class FavoritesFragment extends Fragment {
         add.setOnClickListener(v -> {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
-            transaction.setCustomAnimations(R.anim.anim_slide_in_left, R.anim.slide_out_right);
+            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_in_left);
             transaction.replace(R.id.fragment_explore, addressFragment).addToBackStack(null).commit();
         });
 
@@ -61,6 +59,7 @@ public class FavoritesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         addressAdapter = new AddressAdapter(getContext());
+        addressAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(addressAdapter);
 
         loadAddressList();

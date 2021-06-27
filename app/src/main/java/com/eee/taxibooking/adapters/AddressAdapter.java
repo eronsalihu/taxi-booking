@@ -41,10 +41,17 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull AddressAdapter.ViewHolder holder, int position) {
+
+        final Address address = addressList.get(position);
+
         holder.name.setText(addressList.get(position).name);
         holder.address.setText(addressList.get(position).address);
         holder.city.setText(addressList.get(position).city);
+        holder.delete.setOnClickListener(v -> {
+            Database db  = Database.getDbInstance(context.getApplicationContext());
 
+            db.addressDao().delete(address);
+        });
     }
 
 
