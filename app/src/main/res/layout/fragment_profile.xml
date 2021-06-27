@@ -263,6 +263,7 @@
                 android:layout_below="@+id/user_dateOfBirth"
                 android:layout_marginTop="28dp"
                 android:elevation="20dp"
+                android:padding="16dp"
                 android:text="Edit"
                 android:textColor="@android:color/white"
                 android:translationZ="20dp" />

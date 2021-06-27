@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.eee.taxibooking.R;
 import com.eee.taxibooking.models.User;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +30,6 @@ public class EditProfileFragment extends Fragment {
     private TextInputLayout phone;
     private TextInputLayout gender;
     private TextInputLayout birthDay;
-    private AlertDialog alertDialog;
 
     public EditProfileFragment() {
         // Required empty public constructor
@@ -93,6 +93,7 @@ public class EditProfileFragment extends Fragment {
             databaseReference.child("dateOfBirth").setValue(Objects.requireNonNull(birthDay.getEditText()).getText().toString());
 
             getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_up,R.anim.slide_out_up).remove(this).commit();
+            Snackbar.make(getView(), "Profile Updated.", Snackbar.LENGTH_LONG).show();
 
         });
 
