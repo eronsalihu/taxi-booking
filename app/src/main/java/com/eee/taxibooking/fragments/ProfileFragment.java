@@ -1,8 +1,10 @@
 package com.eee.taxibooking.fragments;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -155,15 +159,27 @@ public class ProfileFragment extends Fragment {
 
             camera = dialog.findViewById(R.id.camera_import);
             camera.setOnClickListener(v1 -> {
-                handleImageClick();
-                dialog.dismiss();
+
+                    handleImageClick();
+                    dialog.dismiss();
+
 
             });
             ;
             storage_import = dialog.findViewById(R.id.storage_import);
             storage_import.setOnClickListener(v1 -> {
-                openImage();
-                dialog.dismiss();
+                int permissionCheck = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
+
+                if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(
+                            getActivity(),
+                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                            100);
+                }
+                else {
+                    openImage();
+                    dialog.dismiss();
+                }
             });
         });
 

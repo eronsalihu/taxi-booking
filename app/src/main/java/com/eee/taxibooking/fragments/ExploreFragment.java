@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.eee.taxibooking.R;
 import com.eee.taxibooking.adapters.TaxiAdapter;
 import com.eee.taxibooking.models.Taxi;
@@ -26,8 +29,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class ExploreFragment extends Fragment {
+public class ExploreFragment extends Fragment implements TaxiAdapter.ItemClick {
 
     private  static String JSON_URL = "https://raw.githubusercontent.com/eronsalihu/eronsalihu.github.io/main/taxi";
     private RecyclerView recyclerView;
@@ -85,8 +89,9 @@ public class ExploreFragment extends Fragment {
                     }
                 }
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-                adapter = new TaxiAdapter(getActivity().getApplicationContext(),taxiList);
+                adapter = new TaxiAdapter(getActivity().getApplicationContext(),taxiList,ExploreFragment.this);
                 recyclerView.setAdapter(adapter);
+
 
             }
         }, new Response.ErrorListener() {
@@ -99,4 +104,15 @@ public class ExploreFragment extends Fragment {
         requestQueue.add(jsonArrayRequest);
     }
 
+    @Override
+    public void onItemClick(Taxi taxi) {
+
+        TaxiDetailsFragment taxiDetailsFragment= new TaxiDetailsFragment(taxi.getName(),taxi.getPhoto(),taxi.getNumber1(),
+                taxi.getNumber2(),taxi.getNoCallPayment());
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_up);
+        transaction.replace(R.id.fragment_explore, taxiDetailsFragment).addToBackStack(null).commit();
+
+    }
 }

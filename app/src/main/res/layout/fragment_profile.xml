@@ -16,7 +16,7 @@
             android:id="@+id/line1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/wave"
+            android:background="@drawable/bc_wave"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="50dp"
@@ -74,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/rectangle_with_circular_border"
+                android:background="@drawable/bc_rectangle_with_circular_border"
                 android:orientation="vertical"
                 android:padding="15dp">
 
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/user_name"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/rectangle_with_circular_border"
+                android:background="@drawable/bc_rectangle_with_circular_border"
                 android:orientation="vertical"
                 android:padding="15dp">
 
@@ -144,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_email"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/rectangle_with_circular_border"
+                android:background="@drawable/bc_rectangle_with_circular_border"
                 android:orientation="vertical"
                 android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -183,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_phone"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/rectangle_with_circular_border"
+                android:background="@drawable/bc_rectangle_with_circular_border"
                 android:orientation="vertical"
                 android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -222,7 +222,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_gender"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/rectangle_with_circular_border"
+                android:background="@drawable/bc_rectangle_with_circular_border"
                 android:orientation="vertical"
                 android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"

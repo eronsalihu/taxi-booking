@@ -15,8 +15,8 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             app:cardCornerRadius="10dp"
             android:layout_gravity="center_vertical">
 
@@ -26,10 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
         </androidx.cardview.widget.CardView>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/taxiTitleDesc"
                 android:layout_width="match_parent"
@@ -40,73 +37,6 @@
                 android:paddingLeft="10dp"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="20sp" />
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:padding="8dp">-->
-<!--                <ImageView-->
-<!--                    android:src="@drawable/ic_phone_call"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:padding="10dp"/>-->
-<!--            <TextView-->
-<!--                android:id="@+id/call_one"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:layout_weight="1"-->
-<!--                android:fontFamily="@font/didactfothic_regular"-->
-<!--                android:paddingLeft="10dp"-->
-<!--                android:textColor="@color/colorSecondaryText"-->
-<!--                android:textSize="20sp" />-->
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:padding="8dp">-->
-<!--                <ImageView-->
-<!--                    android:src="@drawable/ic_phone_call"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:padding="10dp"/>-->
-<!--            <TextView-->
-<!--                android:id="@+id/call_two"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:layout_weight="1"-->
-<!--                android:fontFamily="@font/didactfothic_regular"-->
-<!--                android:paddingLeft="10dp"-->
-<!--                android:textColor="@color/colorSecondaryText"-->
-<!--                android:textSize="20sp" />-->
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:padding="8dp">-->
-<!--                <ImageView-->
-<!--                    android:src="@drawable/ic_phone_call"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:padding="10dp"/>-->
-<!--                <TextView-->
-<!--                    android:id="@+id/freeCall"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:fontFamily="@font/didactfothic_regular"-->
-<!--                    android:paddingLeft="10dp"-->
-<!--                    android:textColor="@color/colorSecondaryText"-->
-<!--                    android:textSize="20sp" />-->
-<!--            </LinearLayout>-->
-
-        </LinearLayout>
 
 
     </LinearLayout>

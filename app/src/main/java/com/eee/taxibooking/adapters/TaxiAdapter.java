@@ -1,5 +1,7 @@
 package com.eee.taxibooking.adapters;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +11,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.eee.taxibooking.R;
+import com.eee.taxibooking.activities.MainActivity;
+import com.eee.taxibooking.fragments.EditProfileFragment;
 import com.eee.taxibooking.models.Taxi;
 
 import java.util.List;
@@ -21,10 +28,12 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewAdapter> {
 
     private Context mContext;
     private List<Taxi> mData;
+    private ItemClick itemClick;
 
-    public TaxiAdapter(Context mContext, List<Taxi> mData) {
+    public TaxiAdapter(Context mContext, List<Taxi> mData, ItemClick itemClick) {
         this.mContext = mContext;
         this.mData = mData;
+        this.itemClick = itemClick;
     }
 
     public static class ViewAdapter extends RecyclerView.ViewHolder {
@@ -40,9 +49,7 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewAdapter> {
             cardView = itemView.findViewById(R.id.recycleView_item);
             photo = itemView.findViewById(R.id.taxiImage);
             name = itemView.findViewById(R.id.taxiTitleDesc);
-//            number_1 = itemView.findViewById(R.id.call_one);
-//            number_2 = itemView.findViewById(R.id.call_two);
-//            freeCall = itemView.findViewById(R.id.freeCall);
+
         }
 
     }
@@ -60,6 +67,7 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewAdapter> {
         return viewAdapter;
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onBindViewHolder(@NonNull ViewAdapter holder, int position) {
         Glide.with(mContext)
@@ -67,9 +75,7 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewAdapter> {
                 .centerCrop()
                 .into(holder.photo);
         holder.name.setText(mData.get(position).getName());
-//        holder.number_1.setText(mData.get(position).getNumber1());
-//        holder.number_2.setText(mData.get(position).getNumber2());
-//        holder.freeCall.setText(mData.get(position).getNoCallPayment());
+        holder.itemView.setOnClickListener(v -> itemClick.onItemClick(mData.get(position)));
 
     }
 
@@ -78,5 +84,8 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewAdapter> {
         return mData.size();
     }
 
+    public interface ItemClick {
+        void onItemClick(Taxi taxi);
+    }
 
 }

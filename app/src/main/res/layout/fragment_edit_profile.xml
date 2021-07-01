@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:background="@drawable/ic_edit_fragment_background"
+    android:background="@drawable/bc_edit_fragment_background"
     tools:context="com.eee.taxibooking.fragments.EditProfileFragment">
 
 
