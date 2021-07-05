@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.eee.taxibooking.R;
 import com.eee.taxibooking.databases.Address;
 import com.eee.taxibooking.databases.Database;
+import com.eee.taxibooking.models.Taxi;
 
 import java.util.List;
 
@@ -21,9 +22,13 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
     private Context context;
     private List<Address> addressList;
+    private ItemClick itemClick;
 
-    public AddressAdapter(Context context) {
+
+    public AddressAdapter(Context context, ItemClick itemClick) {
         this.context = context;
+        this.itemClick = itemClick;
+
     }
 
     public void setAddressList(List<Address> addressList) {
@@ -47,11 +52,13 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         holder.name.setText(addressList.get(position).name);
         holder.address.setText(addressList.get(position).address);
         holder.city.setText(addressList.get(position).city);
-        holder.delete.setOnClickListener(v -> {
-            Database db  = Database.getDbInstance(context.getApplicationContext());
+//        holder.delete.setOnClickListener(v -> {
+//            Database db  = Database.getDbInstance(context.getApplicationContext());
+//
+//            db.addressDao().delete(address);
+//        });
+        holder.delete.setOnClickListener(v -> itemClick.onItemClick(addressList.get(position)));
 
-            db.addressDao().delete(address);
-        });
     }
 
 
@@ -59,6 +66,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     public int getItemCount() {
         return addressList.size();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -75,4 +83,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             delete = itemView.findViewById(R.id.deleteAddress);
         }
     }
+    public interface ItemClick {
+        void onItemClick(Address address);
+    }
+
 }

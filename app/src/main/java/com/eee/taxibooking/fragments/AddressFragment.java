@@ -3,6 +3,7 @@ package com.eee.taxibooking.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +49,8 @@ public class AddressFragment extends Fragment {
 
         backBtn = view.findViewById(R.id.backBtn);
         backBtn.setOnClickListener(v -> {
-            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_out_left, R.anim.slide_out_right).remove(this).commit();
+            NavHostFragment.findNavController(this).navigate(R.id.action_addressFragment_to_savedFragment);
+            //getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_out_left, R.anim.slide_out_right).remove(this).commit();
 
         });
 
@@ -61,8 +63,9 @@ public class AddressFragment extends Fragment {
 
             if (validateInputs(name, address, city)) {
                 saveNewAddress(name, address, city);
+                NavHostFragment.findNavController(this).navigate(R.id.action_addressFragment_to_savedFragment);
 
-                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_out_left, R.anim.slide_out_right).remove(this).commit();
+                //getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_out_left, R.anim.slide_out_right).remove(this).commit();
 
                 Snackbar.make(getView(), "Address Added.", Snackbar.LENGTH_LONG).show();
 

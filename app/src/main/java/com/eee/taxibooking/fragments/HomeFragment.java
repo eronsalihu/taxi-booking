@@ -30,6 +30,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
 import com.eee.taxibooking.R;
@@ -190,9 +191,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 }
                 ProfileFragment profileFragment = new ProfileFragment();
                 if (id == R.id.viewProfile) {
-                    FragmentManager fm = getFragmentManager();
-                    FragmentTransaction transaction = fm.beginTransaction();
-                    transaction.replace(R.id.fragment_home, profileFragment).commit();
+                    NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.profile);
+
                 }
                 return true;
             }

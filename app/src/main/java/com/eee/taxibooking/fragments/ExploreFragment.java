@@ -115,4 +115,5 @@ public class ExploreFragment extends Fragment implements TaxiAdapter.ItemClick {
         transaction.replace(R.id.fragment_explore, taxiDetailsFragment).addToBackStack(null).commit();
 
     }
+
 }

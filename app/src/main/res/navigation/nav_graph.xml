@@ -34,6 +34,10 @@
         <action
             android:id="@+id/action_favoritesFragment_to_profileFragment"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_saved_to_addressFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:destination="@id/addressFragment" />
     </fragment>
 
     <fragment
@@ -42,5 +46,15 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.eee.taxibooking.fragments.AddressFragment"
+        android:label="fragment_address"
+        tools:layout="@layout/fragment_address">
+        <action
+            android:id="@+id/action_addressFragment_to_savedFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:destination="@id/saved" />
+    </fragment>
 
 </navigation>

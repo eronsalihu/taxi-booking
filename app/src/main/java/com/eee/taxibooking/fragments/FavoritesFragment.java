@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,12 +18,13 @@ import com.eee.taxibooking.R;
 import com.eee.taxibooking.adapters.AddressAdapter;
 import com.eee.taxibooking.databases.Address;
 import com.eee.taxibooking.databases.Database;
+import com.eee.taxibooking.models.Taxi;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoritesFragment extends Fragment {
+public class FavoritesFragment extends Fragment implements AddressAdapter.ItemClick {
 
     FloatingActionButton add;
     Database database;
@@ -49,16 +51,19 @@ public class FavoritesFragment extends Fragment {
         add = view.findViewById(R.id.addAddressFab);
         AddressFragment addressFragment = new AddressFragment();
         add.setOnClickListener(v -> {
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction transaction = fm.beginTransaction();
-            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_in_left);
-            transaction.replace(R.id.fragment_explore, addressFragment).addToBackStack(null).commit();
+
+            NavHostFragment.findNavController(this).navigate(R.id.action_saved_to_addressFragment);
+
+//            FragmentManager fm = getFragmentManager();
+//            FragmentTransaction transaction = fm.beginTransaction();
+//            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_in_left);
+//            transaction.replace(R.id.fragment_explore, addressFragment).addToBackStack(null).commit();
         });
 
         RecyclerView recyclerView = view.findViewById(R.id.addressesRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        addressAdapter = new AddressAdapter(getContext());
+        addressAdapter = new AddressAdapter(getContext(), (AddressAdapter.ItemClick) FavoritesFragment.this);
         addressAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(addressAdapter);
 
@@ -70,15 +75,30 @@ public class FavoritesFragment extends Fragment {
 
     private void loadAddressList() {
         Database db = Database.getDbInstance(getContext().getApplicationContext());
-        List<Address> addressList =db.addressDao().getAllAddresses();
+        List<Address> addressList = db.addressDao().getAllAddresses();
         addressAdapter.setAddressList(addressList);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == 100) {
+        if (requestCode == 100) {
             loadAddressList();
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadAddressList();
+    }
+
+    @Override
+    public void onItemClick(Address address) {
+
+        Database db = Database.getDbInstance(getContext().getApplicationContext());
+        db.addressDao().delete(address);
+        loadAddressList();
+
     }
 }
