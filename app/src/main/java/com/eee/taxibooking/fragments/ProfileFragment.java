@@ -1,8 +1,8 @@
 package com.eee.taxibooking.fragments;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -62,9 +62,7 @@ public class ProfileFragment extends Fragment {
     private LinearLayout camera;
     private LinearLayout storage_import;
     private Uri imageUri;
-    private ProgressDialog progressDialog;
     private AlertDialog alertDialog;
-
 
     private static final int IMAGE_REQUEST = 2;
 
@@ -77,6 +75,7 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -116,7 +115,7 @@ public class ProfileFragment extends Fragment {
                     assert user != null;
                     username.setText(user.getFullName());
                     user_email.setText(user.getEmail());
-                    name.setText(user.getFullName().substring(0, 5));
+                    name.setText(user.getFullName());
                     email.setText(user.getEmail());
                     phone.setText(user.getPhone());
                     gender.setText(user.getGender());
@@ -160,12 +159,12 @@ public class ProfileFragment extends Fragment {
             camera = dialog.findViewById(R.id.camera_import);
             camera.setOnClickListener(v1 -> {
 
-                    handleImageClick();
-                    dialog.dismiss();
+                handleImageClick();
+                dialog.dismiss();
 
 
             });
-            ;
+
             storage_import = dialog.findViewById(R.id.storage_import);
             storage_import.setOnClickListener(v1 -> {
                 int permissionCheck = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -175,8 +174,7 @@ public class ProfileFragment extends Fragment {
                             getActivity(),
                             new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                             100);
-                }
-                else {
+                } else {
                     openImage();
                     dialog.dismiss();
                 }
@@ -191,11 +189,10 @@ public class ProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 10001) {
-            switch (resultCode) {
-                case RESULT_OK:
-                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                    profileImage.setImageBitmap(bitmap);
-                    handleUpload(bitmap);
+            if (resultCode == RESULT_OK) {
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                profileImage.setImageBitmap(bitmap);
+                handleUpload(bitmap);
             }
         }
 
@@ -218,12 +215,21 @@ public class ProfileFragment extends Fragment {
     }
 
     //CAMERA UPLOAD
+    @SuppressLint("QueryPermissionsNeeded")
     public void handleImageClick() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        int permissionCheck = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA);
 
-        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-            startActivityForResult(intent, 10001);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    getActivity(),
+                    new String[]{Manifest.permission.CAMERA}, 0);
+        } else {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         }
+
+
     }
 
     private void handleUpload(Bitmap bitmap) {
@@ -238,7 +244,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void getDownloadURL(StorageReference reference) {
-        reference.getDownloadUrl().addOnSuccessListener(uri -> setUserProfileURL(uri));
+        reference.getDownloadUrl().addOnSuccessListener(this::setUserProfileURL);
     }
 
     private void setUserProfileURL(Uri uri) {

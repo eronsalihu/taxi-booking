@@ -18,17 +18,14 @@ import com.google.firebase.auth.FirebaseUser;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class SplashScreenActivity extends AppCompatActivity {
-    FirebaseAuth mAuth;
-    FirebaseUser currentUser;
-    Button getStartedBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -37,7 +34,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        getStartedBtn = findViewById(R.id.get_started_btn);
+        Button getStartedBtn = findViewById(R.id.get_started_btn);
         getStartedBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, LogInActivity.class);
             intent.setFlags(FLAG_ACTIVITY_NEW_TASK).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -47,16 +44,18 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if (currentUser == null) {
-            Intent intent = new Intent(this, LogInActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+        } else {
+            startActivity(new Intent(SplashScreenActivity.this, LogInActivity.class));
         }
+        finish();
 
     }
 
@@ -72,9 +71,9 @@ public class SplashScreenActivity extends AppCompatActivity {
             editor.apply();
         } else {
 
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+            Intent intent = new Intent(this, LogInActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
 
         }
     }

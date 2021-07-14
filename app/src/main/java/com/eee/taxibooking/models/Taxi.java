@@ -3,7 +3,7 @@ package com.eee.taxibooking.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Taxi{
+public class Taxi {
 
     @SerializedName("id")
     @Expose
@@ -24,15 +24,7 @@ public class Taxi{
     @Expose
     private String noCallPayment;
 
-    public Taxi(){}
-
-    public Taxi(String id, String name, String photo, String number1,String number2, String noCallPayment) {
-        this.id = id;
-        this.name = name;
-        this.photo = photo;
-        this.number1 = number1;
-        this.number2 = number2;
-        this.noCallPayment = noCallPayment;
+    public Taxi() {
     }
 
 

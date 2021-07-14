@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +16,6 @@ import com.eee.taxibooking.R;
 import com.eee.taxibooking.adapters.AddressAdapter;
 import com.eee.taxibooking.databases.Address;
 import com.eee.taxibooking.databases.Database;
-import com.eee.taxibooking.models.Taxi;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -26,9 +23,6 @@ import java.util.List;
 
 public class FavoritesFragment extends Fragment implements AddressAdapter.ItemClick {
 
-    FloatingActionButton add;
-    Database database;
-    ArrayList<String> address_name, address_address, address_city;
     public AddressAdapter addressAdapter;
 
     public FavoritesFragment() {
@@ -48,17 +42,8 @@ public class FavoritesFragment extends Fragment implements AddressAdapter.ItemCl
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
-        add = view.findViewById(R.id.addAddressFab);
-        AddressFragment addressFragment = new AddressFragment();
-        add.setOnClickListener(v -> {
-
-            NavHostFragment.findNavController(this).navigate(R.id.action_saved_to_addressFragment);
-
-//            FragmentManager fm = getFragmentManager();
-//            FragmentTransaction transaction = fm.beginTransaction();
-//            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_in_left);
-//            transaction.replace(R.id.fragment_explore, addressFragment).addToBackStack(null).commit();
-        });
+        FloatingActionButton add = view.findViewById(R.id.addAddressFab);
+        add.setOnClickListener(v -> NavHostFragment.findNavController(this).navigate(R.id.action_saved_to_addressFragment));
 
         RecyclerView recyclerView = view.findViewById(R.id.addressesRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

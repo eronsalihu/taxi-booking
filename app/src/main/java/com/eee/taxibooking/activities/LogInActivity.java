@@ -2,7 +2,6 @@ package com.eee.taxibooking.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -11,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eee.taxibooking.R;
@@ -20,26 +18,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Objects;
 
-import static com.eee.taxibooking.activities.RegisterActivity.MY_PREFS_NAME;
-
 public class LogInActivity extends AppCompatActivity {
 
-    EditText login_email;
-    EditText login_password;
-    Button signInBtn;
-    TextView forgotPassword;
-    Button signInWithGoogle;
-    LinearLayout doNotHaveAccount;
+    private EditText login_email;
+    private EditText login_password;
 
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -53,14 +43,14 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        signInBtn = findViewById(R.id.sign_in_btn);
+        Button signInBtn = findViewById(R.id.sign_in_btn);
         signInBtn.setOnClickListener(v -> signIn());
 
-        doNotHaveAccount = findViewById(R.id.tv_sign_up);
+        LinearLayout doNotHaveAccount = findViewById(R.id.tv_sign_up);
         doNotHaveAccount.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), RegisterActivity.class)));
 
 
-        signInWithGoogle = findViewById(R.id.sign_in_with_google);
+        Button signInWithGoogle = findViewById(R.id.sign_in_with_google);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -74,12 +64,11 @@ public class LogInActivity extends AppCompatActivity {
 
         signInWithGoogle.setOnClickListener(v -> signInWithGoogle());
 
-        forgotPassword = findViewById(R.id.forgotPassword);
+        TextView forgotPassword = findViewById(R.id.forgotPassword);
         forgotPassword.setOnClickListener(v -> {
             Intent intent = new Intent(this, ChangePasswordActivity.class);
             startActivity(intent);
         });
-
 
 
     }
@@ -130,22 +119,19 @@ public class LogInActivity extends AppCompatActivity {
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        updateUI(user);
 
-                            openActivity();
-                            finish();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            updateUI(null);
-                        }
+                        openActivity();
+                        finish();
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithCredential:failure", task.getException());
+                        updateUI(null);
                     }
                 });
     }

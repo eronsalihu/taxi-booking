@@ -8,7 +8,8 @@ public class User {
     private String gender;
     private String dateOfBirth;
 
-    public User(){}
+    public User() {
+    }
 
     public User(String fullName, String email,
                 String phone, String gender,

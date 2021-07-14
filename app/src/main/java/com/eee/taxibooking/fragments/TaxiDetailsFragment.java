@@ -1,6 +1,7 @@
 package com.eee.taxibooking.fragments;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -8,44 +9,28 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import com.eee.taxibooking.R;
-import com.eee.taxibooking.models.Taxi;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class TaxiDetailsFragment extends Fragment {
-    TextView name;
-    ImageView imageView;
-    ImageView closeBtn;
-    TextView _phone;
-    TextView _phone_;
-    TextView _freeCall;
-    String taxiName;
-    String imageURI;
-    String phone_1;
-    String phone_2;
-    String freeCall;
+    private TextView _phone;
+    private String taxiName;
+    private String imageURI;
+    private String phone_1;
+    private String phone_2;
+    private String freeCall;
 
     public TaxiDetailsFragment() {
         // Required empty public constructor
@@ -72,9 +57,9 @@ public class TaxiDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_taxi_details, container, false);
-        name = view.findViewById(R.id.detailName);
+        TextView name = view.findViewById(R.id.detailName);
         name.setText(taxiName);
-        imageView = view.findViewById(R.id.imageTaxiDetails);
+        ImageView imageView = view.findViewById(R.id.imageTaxiDetails);
         try {
             AsyncTask<String, Void, Bitmap> execute = new LoadImageTask(imageView)
                     .execute(imageURI);
@@ -83,19 +68,16 @@ public class TaxiDetailsFragment extends Fragment {
             ex.getMessage();
         }
 
-        closeBtn = view.findViewById(R.id.closeBtn);
-        closeBtn.setOnClickListener(v -> {
-            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_up).remove(this).commit();
-
-        });
+        ImageView closeBtn = view.findViewById(R.id.closeBtn);
+        closeBtn.setOnClickListener(v -> getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_up).remove(this).commit());
 
         _phone = view.findViewById(R.id.number_1);
         _phone.setText(phone_1);
 
-        _phone_ = view.findViewById(R.id.number_2);
+        TextView _phone_ = view.findViewById(R.id.number_2);
         _phone_.setText(phone_2);
 
-        _freeCall = view.findViewById(R.id.freeCall);
+        TextView _freeCall = view.findViewById(R.id.freeCall);
         _freeCall.setText(freeCall);
 
         _phone.setOnClickListener(v -> {
@@ -107,8 +89,8 @@ public class TaxiDetailsFragment extends Fragment {
                         new String[]{Manifest.permission.CALL_PHONE},
                         Integer.parseInt("+383"));
             } else {
-                String phone_dial= _phone.getText().toString().replaceAll(" ", "");
-                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+phone_dial));
+                String phone_dial = _phone.getText().toString().replaceAll(" ", "");
+                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone_dial));
                 callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(callIntent);
             }
@@ -124,8 +106,8 @@ public class TaxiDetailsFragment extends Fragment {
                         new String[]{Manifest.permission.CALL_PHONE},
                         Integer.parseInt("+383"));
             } else {
-                String phone_dial= _phone.getText().toString().replaceAll(" ", "");
-                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+phone_dial));
+                String phone_dial = _phone.getText().toString().replaceAll(" ", "");
+                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone_dial));
                 callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(callIntent);
             }
@@ -140,8 +122,8 @@ public class TaxiDetailsFragment extends Fragment {
                         new String[]{Manifest.permission.CALL_PHONE},
                         Integer.parseInt("+383"));
             } else {
-                String phone_dial= _phone.getText().toString().replaceAll(" ", "");
-                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+phone_dial));
+                String phone_dial = _phone.getText().toString().replaceAll(" ", "");
+                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone_dial));
                 callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(callIntent);
             }
@@ -150,7 +132,8 @@ public class TaxiDetailsFragment extends Fragment {
         return view;
     }
 
-    public class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
+    public static class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
+        @SuppressLint("StaticFieldLeak")
         ImageView bmImage;
 
         public LoadImageTask(ImageView bmImage) {

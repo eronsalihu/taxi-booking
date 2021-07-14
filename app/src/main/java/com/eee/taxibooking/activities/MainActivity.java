@@ -17,9 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseAuth mAuth;
-    FirebaseUser currentUser;
-    BottomNavigationView bottomNavigationView;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -38,15 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-
         setUpNavigation();
 
     }
 
 
-    public void setUpNavigation(){
-        bottomNavigationView =findViewById(R.id.bottom_nav_menu);
-        NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager()
+    public void setUpNavigation() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_menu);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView,
                 navHostFragment.getNavController());
@@ -64,6 +61,4 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-
 }

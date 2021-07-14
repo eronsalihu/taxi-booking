@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_explore"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_explore"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary"
     android:padding="8dp"
     tools:context="com.eee.taxibooking.fragments.FavoritesFragment">
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center_horizontal"-->
-<!--        android:text="My Addresses"-->
-<!--        android:textSize="20sp"-->
-<!--        android:textAllCaps="true"-->
-<!--        android:textColor="@color/colorSecondaryText"/>-->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,26 +19,28 @@
             android:id="@+id/addressesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:clipToPadding="false"
             android:layout_margin="8dp"
+            android:clipToPadding="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addAddressFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="66dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_add"
             app:backgroundTint="@color/colorSecondaryText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/white"/>
+            app:tint="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

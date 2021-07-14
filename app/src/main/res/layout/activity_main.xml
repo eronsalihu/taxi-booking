@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="com.eee.taxibooking.activities.MainActivity">
 
     <fragment
@@ -13,7 +14,7 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="@id/bottom_nav_menu"
-        app:navGraph="@navigation/nav_graph"/>
+        app:navGraph="@navigation/nav_graph" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -22,7 +23,6 @@
         android:layout_height="?actionBarSize"
         android:background="@drawable/ic_line"
         android:clipChildren="false"
-        android:elevation="4dp"
         android:padding="8dp"
         android:theme="@style/BottomNavigationView"
         app:itemIconTint="@color/drawer_item"

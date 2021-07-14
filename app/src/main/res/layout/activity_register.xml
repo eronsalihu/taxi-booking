@@ -53,7 +53,8 @@
         android:textColorHint="@color/colorSecondaryText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/log_in_dsc" />
+        app:layout_constraintTop_toBottomOf="@id/log_in_dsc"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/register_email"
@@ -70,7 +71,8 @@
         android:textColorHint="@color/colorSecondaryText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fullname_register" />
+        app:layout_constraintTop_toBottomOf="@id/fullname_register"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/register_password"
@@ -87,7 +89,8 @@
         android:textColorHint="@color/colorSecondaryText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/register_email" />
+        app:layout_constraintTop_toBottomOf="@id/register_email"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/register_confirm_password"
@@ -104,7 +107,8 @@
         android:textColorHint="@color/colorSecondaryText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/register_password" />
+        app:layout_constraintTop_toBottomOf="@id/register_password"
+        tools:ignore="Autofill" />
 
     <CheckBox
         android:id="@+id/terms_and_conditions"
@@ -129,11 +133,9 @@
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
         android:layout_marginBottom="10dp"
-        android:elevation="20dp"
-        android:text="@string/sign_up"
         android:padding="16dp"
+        android:text="@string/sign_up"
         android:textColor="@android:color/white"
-        android:translationZ="20dp"
         app:layout_constraintBottom_toTopOf="@id/tv_sign_in"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -162,11 +164,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/didactfothic_regular"
+            android:paddingStart="3dp"
             android:paddingLeft="3dp"
             android:text="@string/sign_in"
             android:textColor="@color/orange"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
 
     </LinearLayout>
 

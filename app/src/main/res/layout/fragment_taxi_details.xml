@@ -17,6 +17,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="24dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_close"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,6 +35,7 @@
                 android:id="@+id/imageTaxiDetails"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/todo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -68,103 +70,116 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="10dp"
                 android:paddingLeft="10dp"
-                android:text="Call"
+                android:text="@string/call"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card" />
+                app:layout_constraintTop_toBottomOf="@id/card"
+                tools:ignore="RtlSymmetry" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/bc_edit_text"
                 android:layout_margin="8dp"
+                android:background="@drawable/bc_edit_text"
+                android:orientation="horizontal"
                 android:padding="8dp">
 
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/todo"
                     android:padding="10dp"
                     android:src="@drawable/ic_phone_call" />
 
                 <TextView
                     android:id="@+id/number_1"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:fontFamily="@font/didactfothic_regular"
+                    android:paddingStart="10dp"
                     android:paddingLeft="10dp"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    tools:ignore="RtlSymmetry" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/bc_edit_text"
                 android:layout_margin="8dp"
+                android:background="@drawable/bc_edit_text"
+                android:orientation="horizontal"
                 android:padding="8dp">
 
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/todo"
                     android:padding="10dp"
                     android:src="@drawable/ic_phone_call" />
 
                 <TextView
                     android:id="@+id/number_2"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:fontFamily="@font/didactfothic_regular"
+                    android:paddingStart="10dp"
                     android:paddingLeft="10dp"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    tools:ignore="RtlSymmetry" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="10dp"
                 android:paddingLeft="10dp"
-                android:text="Free Call"
+                android:text="@string/free_call"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card" />
+                app:layout_constraintTop_toBottomOf="@id/card"
+                tools:ignore="RtlSymmetry" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/bc_edit_text"
                 android:layout_margin="8dp"
+                android:background="@drawable/bc_edit_text"
+                android:orientation="horizontal"
                 android:padding="8dp">
 
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/todo"
                     android:padding="10dp"
                     android:src="@drawable/ic_phone_call" />
 
                 <TextView
                     android:id="@+id/freeCall"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:fontFamily="@font/didactfothic_regular"
+                    android:paddingStart="10dp"
                     android:paddingLeft="10dp"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    tools:ignore="RtlSymmetry" />
             </LinearLayout>
 
         </LinearLayout>

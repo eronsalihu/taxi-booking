@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recycleView_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/colorSecondary"
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
-    app:cardUseCompatPadding="true"
-    android:id="@+id/recycleView_item">
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -17,29 +18,30 @@
         <androidx.cardview.widget.CardView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:cardCornerRadius="10dp"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            app:cardCornerRadius="10dp">
 
             <ImageView
                 android:id="@+id/taxiImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:contentDescription="@string/todo" />
         </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/taxiTitleDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:fontFamily="@font/didactfothic_regular"
-                android:paddingLeft="10dp"
-                android:textColor="@color/colorSecondaryText"
-                android:textSize="20sp" />
-
+        <TextView
+            android:id="@+id/taxiTitleDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:fontFamily="@font/didactfothic_regular"
+            android:paddingLeft="10dp"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="20sp"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry" />
 
     </LinearLayout>
-
 
 </androidx.cardview.widget.CardView>

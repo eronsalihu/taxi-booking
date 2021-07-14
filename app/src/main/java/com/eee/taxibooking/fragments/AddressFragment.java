@@ -1,14 +1,13 @@
 package com.eee.taxibooking.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.eee.taxibooking.R;
 import com.eee.taxibooking.databases.Address;
@@ -22,7 +21,6 @@ public class AddressFragment extends Fragment {
     private TextInputLayout _name;
     private TextInputLayout _address;
     private TextInputLayout _city;
-    private ImageView backBtn;
 
     public AddressFragment() {
         // Required empty public constructor
@@ -45,9 +43,7 @@ public class AddressFragment extends Fragment {
         _address = view.findViewById(R.id.address);
         _city = view.findViewById(R.id.city);
 
-        FavoritesFragment favoritesFragment = new FavoritesFragment();
-
-        backBtn = view.findViewById(R.id.backBtn);
+        ImageView backBtn = view.findViewById(R.id.backBtn);
         backBtn.setOnClickListener(v -> {
             NavHostFragment.findNavController(this).navigate(R.id.action_addressFragment_to_savedFragment);
             //getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_out_left, R.anim.slide_out_right).remove(this).commit();

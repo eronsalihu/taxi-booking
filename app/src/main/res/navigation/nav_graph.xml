@@ -36,8 +36,8 @@
             app:destination="@id/profile" />
         <action
             android:id="@+id/action_saved_to_addressFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:destination="@id/addressFragment" />
+            app:destination="@id/addressFragment"
+            app:enterAnim="@anim/slide_in_right" />
     </fragment>
 
     <fragment
@@ -53,8 +53,8 @@
         tools:layout="@layout/fragment_address">
         <action
             android:id="@+id/action_addressFragment_to_savedFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:destination="@id/saved" />
+            app:destination="@id/saved"
+            app:enterAnim="@anim/slide_in_left" />
     </fragment>
 
 </navigation>

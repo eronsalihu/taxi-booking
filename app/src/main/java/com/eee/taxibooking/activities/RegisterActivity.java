@@ -26,9 +26,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText registerPassword;
     private EditText fullName;
     private EditText confirmPassword;
-    private CheckBox termsAndCondition;
-    private Button signUpBtn;
-    private LinearLayout alreadyHaveAnAccount;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     public static final String MY_PREFS_NAME = "PREFS";
@@ -39,11 +36,11 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        signUpBtn = findViewById(R.id.sign_up_btn);
+        Button signUpBtn = findViewById(R.id.sign_up_btn);
 
         signUpBtn.setOnClickListener(v -> createAccount());
 
-        alreadyHaveAnAccount = findViewById(R.id.tv_sign_in);
+        LinearLayout alreadyHaveAnAccount = findViewById(R.id.tv_sign_in);
 
         alreadyHaveAnAccount.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), LogInActivity.class));
@@ -65,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        User user = new User(name,email,"tag","tag","tag");
+        User user = new User(name, email, "tag", "tag", "tag");
         if (validate(name, email, password, conPassword)) {
 
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
@@ -99,8 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
                     }
             );
         }
-
-
     }
 
     private boolean validate(String name, String email, String password, String conPassword) {
@@ -141,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
 
-        termsAndCondition = findViewById(R.id.terms_and_conditions);
+        CheckBox termsAndCondition = findViewById(R.id.terms_and_conditions);
 
         if (!termsAndCondition.isChecked()) {
             termsAndCondition.setError("Agree to Terms & Conditions to continue!");

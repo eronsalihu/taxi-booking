@@ -14,29 +14,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.eee.taxibooking.R;
 import com.eee.taxibooking.adapters.TaxiAdapter;
 import com.eee.taxibooking.models.Taxi;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class ExploreFragment extends Fragment implements TaxiAdapter.ItemClick {
 
-    private  static String JSON_URL = "https://raw.githubusercontent.com/eronsalihu/eronsalihu.github.io/main/taxi";
+    private static String JSON_URL = "https://raw.githubusercontent.com/eronsalihu/eronsalihu.github.io/main/taxi";
     private RecyclerView recyclerView;
     private List<Taxi> taxiList;
-    TaxiAdapter adapter;
+    private TaxiAdapter adapter;
 
 
     public ExploreFragment() {
@@ -60,46 +55,33 @@ public class ExploreFragment extends Fragment implements TaxiAdapter.ItemClick {
 
         extract();
 
-
-//        GetData getData = new GetData();
-//        getData.execute();
-
         return v;
     }
 
-    private void extract(){
+    private void extract() {
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, JSON_URL, null, response -> {
+            for (int i = 0; i < response.length(); i++) {
+                try {
+                    JSONObject jsonObject = response.getJSONObject(i);
 
-                        Taxi taxi = new Taxi();
-                        taxi.setPhoto(jsonObject.getString("photo"));
-                        taxi.setName(jsonObject.getString("name"));
-                        taxi.setNumber1(jsonObject.getString("number_1"));
-                        taxi.setNumber2(jsonObject.getString("number_2"));
-                        taxi.setNoCallPayment(jsonObject.getString("noCallPayment"));
-                        taxiList.add(taxi);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        ;
-                    }
+                    Taxi taxi = new Taxi();
+                    taxi.setPhoto(jsonObject.getString("photo"));
+                    taxi.setName(jsonObject.getString("name"));
+                    taxi.setNumber1(jsonObject.getString("number_1"));
+                    taxi.setNumber2(jsonObject.getString("number_2"));
+                    taxi.setNoCallPayment(jsonObject.getString("noCallPayment"));
+                    taxiList.add(taxi);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-                adapter = new TaxiAdapter(getActivity().getApplicationContext(),taxiList,ExploreFragment.this);
-                recyclerView.setAdapter(adapter);
-
-
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("ResponseError",error.getMessage());
-            }
-        });
+
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+            adapter = new TaxiAdapter(getActivity().getApplicationContext(), taxiList, ExploreFragment.this);
+            recyclerView.setAdapter(adapter);
+
+        }, error -> Log.d("ResponseError", error.getMessage()));
 
         requestQueue.add(jsonArrayRequest);
     }
@@ -107,8 +89,8 @@ public class ExploreFragment extends Fragment implements TaxiAdapter.ItemClick {
     @Override
     public void onItemClick(Taxi taxi) {
 
-        TaxiDetailsFragment taxiDetailsFragment= new TaxiDetailsFragment(taxi.getName(),taxi.getPhoto(),taxi.getNumber1(),
-                taxi.getNumber2(),taxi.getNoCallPayment());
+        TaxiDetailsFragment taxiDetailsFragment = new TaxiDetailsFragment(taxi.getName(), taxi.getPhoto(), taxi.getNumber1(),
+                taxi.getNumber2(), taxi.getNoCallPayment());
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_up);

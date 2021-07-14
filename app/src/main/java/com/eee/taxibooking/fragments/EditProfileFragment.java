@@ -1,6 +1,5 @@
 package com.eee.taxibooking.fragments;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,7 +64,7 @@ public class EditProfileFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
                     User user = snapshot.getValue(User.class);
                     assert user != null;
                     Objects.requireNonNull(username.getEditText()).setText(user.getFullName());
@@ -92,7 +91,7 @@ public class EditProfileFragment extends Fragment {
             databaseReference.child("gender").setValue(Objects.requireNonNull(gender.getEditText()).getText().toString());
             databaseReference.child("dateOfBirth").setValue(Objects.requireNonNull(birthDay.getEditText()).getText().toString());
 
-            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_up,R.anim.slide_out_up).remove(this).commit();
+            getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_up).remove(this).commit();
             Snackbar.make(getView(), "Profile Updated.", Snackbar.LENGTH_LONG).show();
 
         });

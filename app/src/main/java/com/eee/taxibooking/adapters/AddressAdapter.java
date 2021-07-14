@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,16 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.eee.taxibooking.R;
 import com.eee.taxibooking.databases.Address;
-import com.eee.taxibooking.databases.Database;
-import com.eee.taxibooking.models.Taxi;
 
 import java.util.List;
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
 
-    private Context context;
+    private final Context context;
     private List<Address> addressList;
-    private ItemClick itemClick;
+    private final ItemClick itemClick;
 
 
     public AddressAdapter(Context context, ItemClick itemClick) {
@@ -47,8 +44,6 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull AddressAdapter.ViewHolder holder, int position) {
 
-        final Address address = addressList.get(position);
-
         holder.name.setText(addressList.get(position).name);
         holder.address.setText(addressList.get(position).address);
         holder.city.setText(addressList.get(position).city);
@@ -68,7 +63,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView name;
         TextView address;
@@ -83,6 +78,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             delete = itemView.findViewById(R.id.deleteAddress);
         }
     }
+
     public interface ItemClick {
         void onItemClick(Address address);
     }
