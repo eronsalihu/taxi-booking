@@ -57,10 +57,10 @@ The app shows you a various list of taxit with their details on it. You can call
    	+ Sw720dp
    	+ Landscape
 - [x] Libraries(packages)
-	  + Retrofit
-		+ Jsoup
-		+ Volley
-		+ Hdodenhof etc.
+    + Retrofit
+    + Jsoup
+    + Volley
+    + Hdodenhof etc.
 
 Bonus:
 - [x] Komunikimi me pjese harduerike te telefonit
