@@ -30,13 +30,17 @@ The app shows you a various list of taxit with their details on it. You can call
     +	CAMERA
     +	READ_EXTERNAL_STORAGE
     +	CALL_PHONE
-- [x]Linear Layout, Relative Layout and Constraint Layout 
--	[x] JSON data parse
+- [x] Linear Layout, Relative Layout and Constraint Layout 
+
+- [x] JSON data parse
      + ExploreFragment   
-- [x]Threads  AsyncTask
+     
+- [x] Threads  AsyncTask
     + LoadImageTask
-- [x]Internal database
+    
+- [x] Internal database
     +	Room (DAO)
+    
 - [x] Shared preferences 
     + SplashScreenActivity
 - [x] Firebase integration 
